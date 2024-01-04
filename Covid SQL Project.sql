@@ -4,12 +4,8 @@ FROM SQLProjects.dbo.CovidDeaths$
 WHERE continent IS NOT NULL
 ORDER BY 3, 4
 
---SELECT * 
---FROM SQLProjects.dbo.CovidVaccinations$
---ORDER BY 3, 4
 
 -- Data of CovidDeaths Table
-
 SELECT Location, date, total_cases, new_cases, total_deaths, population
 FROM SQLProjects.dbo.CovidDeaths$
 ORDER BY 1, 2
@@ -53,7 +49,7 @@ ORDER BY Total_Death_Count DESC
 -- Every day deaths per population
 SELECT date, SUM(new_cases) AS total_cases, SUM(cast(new_deaths as int)) AS total_deaths,
 CASE 
-	WHEN SUM(New_cases) = 0 THEN 0 -- Handle divide by zero scenario
+    WHEN SUM(New_cases) = 0 THEN 0 -- Handle divide by zero scenario
     ELSE SUM(cast(new_deaths AS INT)) / SUM(New_cases) * 100 
 END AS Death_Rate
 FROM SQLProjects.dbo.CovidDeaths$
@@ -64,7 +60,7 @@ ORDER BY 1, 2
 -- Total deaths worldwide and death rate
 SELECT SUM(new_cases) AS total_cases, SUM(cast(new_deaths as int)) AS total_deaths,
 CASE 
-	WHEN SUM(New_cases) = 0 THEN 0 -- Handle divide by zero scenario
+    WHEN SUM(New_cases) = 0 THEN 0 -- Handle divide by zero scenario
     ELSE SUM(cast(new_deaths AS INT)) / SUM(New_cases) * 100 
 END AS Death_Rate
 FROM SQLProjects.dbo.CovidDeaths$
